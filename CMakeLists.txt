@@ -18,3 +18,9 @@ target_link_libraries(try_header_only fmt::fmt-header-only)
 add_executable(try_intelfpga try.cc)
 target_link_options(try_intelfpga PRIVATE -fintelfpga)
 target_link_libraries(try_intelfpga fmt::fmt)
+
+add_library(call_fmt STATIC try_lib_only.cc)
+target_link_libraries(call_fmt PRIVATE fmt::fmt)
+
+add_executable(try_call_fmt try_lib_link_main.cc)
+target_link_libraries(try_call_fmt call_fmt)
